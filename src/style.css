@@ -435,6 +435,9 @@
   padding: var(--space-2) var(--space-2) 0;
   cursor: pointer;
   outline: none;
+  background: transparent;
+  border: none;
+  font: inherit;
 }
 
 .peg-col:focus-visible {
@@ -606,6 +609,10 @@
   color: var(--color-accent);
 }
 
+.light-palette .game-over-result {
+  color: var(--color-text-primary);
+}
+
 .game-over-new-best {
   font-size: var(--text-md);
   font-weight: var(--weight-bold);
@@ -654,18 +661,20 @@
 
 /* ── Modals ───────────────────────────────────────────────────────────────── */
 
-.modal-backdrop {
+dialog.modal-card {
   position: fixed;
   inset: 0;
+  margin: auto;
+  height: fit-content;
+  width: calc(100% - var(--space-5) * 2);
+}
+
+dialog.modal-card::backdrop {
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  padding: var(--space-5);
 }
 
 .modal-card {
+  color: inherit;
   background: var(--color-surface);
   border: var(--border-default);
   border-radius: var(--radius-lg);
@@ -738,6 +747,25 @@
 .modal-actions .secondary-btn {
   width: auto;
   padding: var(--space-3) var(--space-5);
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .disk,
+  .disk.disk-top-selected,
+  .disk.disk-placed,
+  .disk.disk-win-glow,
+  .game-over-overlay,
+  .game-over-card,
+  #hud-moves.pulse,
+  .primary-btn,
+  .secondary-btn,
+  .icon-btn {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 /* ── Responsive ───────────────────────────────────────────────────────────── */
